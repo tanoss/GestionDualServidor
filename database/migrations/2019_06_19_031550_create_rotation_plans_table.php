@@ -15,12 +15,13 @@ class CreateRotationPlansTable extends Migration
     {
         Schema::create('rotation_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('idPlanMarcoFormacion');
-            $table->foreign('idPlanMarcoFormacion')->references('id')->on('training_framework_plans');
+           
             $table->string('conocimientosTeoricos');
             $table->string('conocimientosProcedimentales');
             $table->string('conocimientosActitudinales');
             $table->integer('prioridad');
+            $table->integer('training_framework_plan_id');
+            $table->foreign('training_framework_plan_id')->references('id')->on('training_framework_plans');
             $table->timestamps();
         });
     }

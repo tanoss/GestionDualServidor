@@ -23,8 +23,8 @@ class CreateActivitiesLearningReportsTable extends Migration
             $table->string('horaAlmuerzo');
             $table->string('horasTotales');
             $table->integer('prioridad');
-            $table->integer('learningreport_id');
-            $table->foreign('learningreport_id')->references('id')->on('learning_reports');
+            $table->integer('learnig_report_id');
+            $table->foreign('learnig_report_id')->references('id')->on('learning_reports');
             $table->timestamps();
         });
     }
