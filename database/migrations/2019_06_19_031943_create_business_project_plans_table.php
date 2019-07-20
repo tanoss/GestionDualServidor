@@ -26,8 +26,8 @@ class CreateBusinessProjectPlansTable extends Migration
              $table->double('presupuesto');
              $table->string('beneficiosEsperados');
              $table->integer('prioridad');
-             $table->integer('frameworkplantraining_id');
-             $table->foreign('frameworkplantraining_id')->references('id')->on('training_framework_plans');
+             $table->integer('training_framework_plan_id');
+             $table->foreign('training_framework_plan_id')->references('id')->on('training_framework_plans');
 
             
             $table->timestamps();

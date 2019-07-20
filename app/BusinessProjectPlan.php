@@ -6,10 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class BusinessProjectPlan extends Model
 {
-    protected $fillable = ['titulo','analisis','objetivo','descripcion','indicador','medicion','meta','fuenteDatos','presupuesto','beneficiosEsperados','prioridad','frameorkplanplantraining_id'];
+    protected $fillable = ['titulo',
+    'analisis',
+    'objetivo',
+    'descripcion',
+    'indicador',
+    'medicion',
+    'meta',
+    'fuenteDatos',
+    'presupuesto',
+    'beneficiosEsperados',
+    'prioridad',
+];
 
-    public function planmarcoformacion()
+    public function TrainingFrameworkPlan()
     {
-        return $this->belongsTo(FrameworkPlanTraining::class);
+        return $this->belongsTo("App\TrainingFrameworkPlan");
     }
 }

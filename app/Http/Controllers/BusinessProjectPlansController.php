@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BusinessProjectPlan;
-use App\FrameworkPlanTraining;
+
+//use App\FrameworkPlanTraining;
+use App\TrainingFrameworkPlan;
 class BusinessProjectPlansController extends Controller
 {
     /**
@@ -14,8 +16,8 @@ class BusinessProjectPlansController extends Controller
      */
     public function index()
     {
-        return BusinessProjectPlan::get();
-
+        $bbplan =  BusinessProjectPlan::with('TrainingFrameworkPlan')->get();
+        return response()->json($bbplan);
     }
 
     /**
@@ -35,13 +37,14 @@ class BusinessProjectPlansController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
         $dataBodyClient = $request->json()->all();
         $dataBusinessProjectPlan = $dataBodyClient['business_project_plans'];
-        $dataFrameworkPlanTraining = $dataBodyClient['training_framework_plans'];
-        $frameworkplantraining =  FrameworkPlanTraining::findorfail($dataFrameworkPlanTraining['id']);
-        $frameworkplantraining->business_project_plans()->create([
-            'idPlanMarcoFormacion'=>$dataBusinessProjectPlan['idPlanMarcoFormacion'],
+        $dataFrameworkTrainingPlan = $dataBodyClient['training_framework_plans'];
+        $frameworkplantraining =  TrainingFrameworkPlan::findorfail($dataFrameworkTrainingPlan['id']);
+        
+        $frameworkplantraining-> BusinessProjectPlan()->create([
+            //'idPlanMarcoFormacion'=>$dataBusinessProjectPlan['idPlanMarcoFormacion'],
             'titulo'=>$dataBusinessProjectPlan['titulo'],
             'analisis'=>$dataBusinessProjectPlan['analisis'],
             'objetivo'=>$dataBusinessProjectPlan['objetivo'],
@@ -65,7 +68,8 @@ class BusinessProjectPlansController extends Controller
      */
     public function show($id)
     {
-        return BusinessProjectPlan::where('id',$id)->get();
+        $response = BusinessProjectPlan::where('id',$id)->first();
+        return response()->json(['BusinessProjectPlan'=>$response],200);
 
     }
 
@@ -99,10 +103,12 @@ class BusinessProjectPlansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $bpplan= BusinessProjectPlan::findOrFail($id);
         $bpplan->delete();
+        return response()->json(true,201);
     }
 }
 

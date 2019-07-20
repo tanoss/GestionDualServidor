@@ -17,7 +17,7 @@ class CreateLearningReportsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('semana');
             $table->double('calificacion');
-            //$table->timestamps('fechaEntrega');
+            $table->date('fechaEntrega');
             $table->string('reflexion');
             $table->string('observaciones');
             $table->integer('prioridad');

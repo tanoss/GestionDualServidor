@@ -17,6 +17,7 @@ class CreateActivitiesLearningReportsTable extends Migration
             $table->bigIncrements('id');
             $table->string('descripcion');
             $table->string('tipo');
+            $table->date('fecha');
             $table->string('horaIngreso');
             $table->string('horaSalida');
             $table->string('horaAlmuerzo');

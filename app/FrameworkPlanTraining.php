@@ -13,8 +13,8 @@ class FrameworkPlanTraining extends Model
         return $this->hasOne(RotationPlan::class);
     }
     
-    public function planproyectoempresarial()
+    public function BusinessProjectPlan()
     {
-        return $this->hasOne(BusinessProjectPlan::class);
+        return $this->hasMany(App\BusinessProjectPlan);
     }
 }

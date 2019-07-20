@@ -23,6 +23,8 @@ class CreateFollowTable extends Migration
             $table->integer('idTutorEspecifico');
             $table->string('cordinadorCarrera');
             $table->integer('horasFormacion');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
             $table->integer('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             // $table->timestamps();
