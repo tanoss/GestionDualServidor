@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RotationPlan;
-use App\FrameworkPlanTraining;
+
+use App\TrainingFrameworkPlan;
 class RotationPlansController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class RotationPlansController extends Controller
      */
     public function index()
     {
-        return RotationPlan::get();
+        $rplan =  RotationPlan::with('TrainingFrameworkPlan')->get();
+        return response()->json($rplan);
 
     }
 
@@ -40,8 +42,8 @@ class RotationPlansController extends Controller
         $dataBodyClient = $request->json()->all();
         $dataRotationPlan = $dataBodyClient['rotation_plans'];
         $dataFrameworkPlanTraining = $dataBodyClient['training_framework_plans'];
-        $frameworkplantraining =  FrameworkPlanTraining::findorfail($dataFrameworkPlanTraining['id']);
-        $frameworkplantraining->rotation_plans()->create([
+        $frameworkplantraining =  TrainingFrameworkPlan::findorfail($dataFrameworkPlanTraining['id']);
+        $frameworkplantraining->RotationPlan()->create([
            // 'idPlanMarcoFormacion'=>$dataRotationPlan['idPlanMarcoFormacion'],
             'conocimientosTeoricos'=>$dataRotationPlan['conocimientosTeoricos'],
             'conocimientosProcedimentales'=>$dataRotationPlan['conocimientosProcedimentales'],
@@ -60,6 +62,7 @@ class RotationPlansController extends Controller
     public function show($id)
     {
         return RotationPlan::where('id',$id)->get();
+        
 
     }
 

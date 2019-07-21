@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RotationPlan extends Model
 {
-    protected $fillable = ['idPlanMarcoFormacion','conocimientosTeoricos','conocimientosProcedimentales','conocimientosActitudinales','prioridad'];
+    protected $fillable = ['conocimientosTeoricos','conocimientosProcedimentales','conocimientosActitudinales','prioridad'];
 
-    public function planmarcoformacionrotacion()
+    public function TrainingFrameworkPlan()
     {
-        return $this->belongsTo(FrameworkPlanTraining::class);
+        return $this->belongsTo("App\TrainingFrameworkPlan");
     }
 }

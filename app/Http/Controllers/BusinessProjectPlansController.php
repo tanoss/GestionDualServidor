@@ -44,7 +44,7 @@ class BusinessProjectPlansController extends Controller
         $frameworkplantraining =  TrainingFrameworkPlan::findorfail($dataFrameworkTrainingPlan['id']);
         
         $frameworkplantraining-> BusinessProjectPlan()->create([
-            //'idPlanMarcoFormacion'=>$dataBusinessProjectPlan['idPlanMarcoFormacion'],
+          
             'titulo'=>$dataBusinessProjectPlan['titulo'],
             'analisis'=>$dataBusinessProjectPlan['analisis'],
             'objetivo'=>$dataBusinessProjectPlan['objetivo'],

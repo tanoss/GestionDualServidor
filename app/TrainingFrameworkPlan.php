@@ -8,12 +8,12 @@ class TrainingFrameworkPlan extends Model
 {
     protected $fillable = ['prioridad',] ;
 
-    // public function planrotacion()
-    // {
-    //     return $this->hasOne("App\BusinessProjectPlan");
-    // }
+     public function RotationPlan()
+     {
+         return $this->hasMany("App\RotationPlan");
+     }
     
-    public function businessprojectplan()
+    public function BusinessProjectPlan()
     {
         return $this->hasMany("App\BusinessProjectPlan");
     }
