@@ -28,3 +28,4 @@ Route::resource('business_project_plans','BusinessProjectPlansController');
 Route::resource('entidadformadora','TrainingEntityController');
 Route::resource('plantrabajo','TrainingFrameworkPlansController');
 Route::resource('objectives','ObjetivesController');
+Route::resource('learningreports','LearningReportsController');

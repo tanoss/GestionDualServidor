@@ -22,4 +22,9 @@ class TrainingFrameworkPlan extends Model
     {
         return $this->hasMany("App\Objective");
     }
+
+    public function LearningReport()
+    {
+        return $this->hasMany("App\LearningReport");
+    }
 }
