@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActivityLearningReport extends Model
 {
-    protected $fillable = ['descripcion','tipo','horaIngreso','horaSalida','horaAlmuerzo','horaTotales','prioridad','learningreport_id'] ;
+    protected $fillable = ['descripcion','tipo','fecha','horaIngreso','horaSalida','horaAlmuerzo','horasTotales','prioridad'] ;
+    public function LearningReport()
+    {
+        return $this->belongsTo("App\LearningReport");
+    }
+
 }

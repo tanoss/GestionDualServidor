@@ -14,4 +14,9 @@ class LearningReport extends Model
         return $this->belongsTo("App\TrainingFrameworkPlan");
     }
 
+    public function ActivityLearningReport()
+    {
+        return $this->hasMany("App\ActivityLearningReport");
+    }
+
 }

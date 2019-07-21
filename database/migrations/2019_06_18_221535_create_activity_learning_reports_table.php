@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitiesLearningReportsTable extends Migration
+class CreateActivityLearningReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActivitiesLearningReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities_learning_reports', function (Blueprint $table) {
+        Schema::create('activity_learning_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descripcion');
             $table->string('tipo');
@@ -23,8 +23,8 @@ class CreateActivitiesLearningReportsTable extends Migration
             $table->string('horaAlmuerzo');
             $table->string('horasTotales');
             $table->integer('prioridad');
-            $table->integer('learnig_report_id');
-            $table->foreign('learnig_report_id')->references('id')->on('learning_reports');
+            $table->integer('learning_report_id');
+            $table->foreign('learning_report_id')->references('id')->on('learning_reports');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateActivitiesLearningReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities_learning_reports');
+        Schema::dropIfExists('activity_learning_reports');
     }
 }
