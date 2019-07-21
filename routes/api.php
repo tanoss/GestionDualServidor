@@ -27,3 +27,4 @@ Route::resource('rotation_plans','RotationPlansController');
 Route::resource('business_project_plans','BusinessProjectPlansController');
 Route::resource('entidadformadora','TrainingEntityController');
 Route::resource('plantrabajo','TrainingFrameworkPlansController');
+Route::resource('objectives','ObjetivesController');

@@ -17,4 +17,9 @@ class TrainingFrameworkPlan extends Model
     {
         return $this->hasMany("App\BusinessProjectPlan");
     }
+
+    public function Objective()
+    {
+        return $this->hasMany("App\Objective");
+    }
 }
