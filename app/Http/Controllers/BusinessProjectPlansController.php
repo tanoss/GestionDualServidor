@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BusinessProjectPlan;
+use App\Tracing;
 
 //use App\FrameworkPlanTraining;
 use App\TrainingFrameworkPlan;
@@ -17,6 +18,20 @@ class BusinessProjectPlansController extends Controller
     public function index()
     {
         $bbplan =  BusinessProjectPlan::with('TrainingFrameworkPlan')->get();
+        return response()->json($bbplan);
+    }
+
+    public function searchStudents()
+    {
+        
+        $bbplan =  Tracing::select('follow.*','people.*')
+        ->with('Student')
+        ->with('TrainingFrameworkPlans')
+        ->join('students','students.id','follow.student_id')
+        ->join('people','people.id','students.person_id')
+        ->where('follow.idPeriodoLectivo',1)
+        ->where('follow.idTutorGeneral',1)
+        ->get();
         return response()->json($bbplan);
     }
 
@@ -74,6 +89,8 @@ class BusinessProjectPlansController extends Controller
         return response()->json([$response],200);
 
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

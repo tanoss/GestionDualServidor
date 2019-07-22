@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route::resource('entidadformadora','TrainingEntityController');
+Route::get('business_project_plans/students','BusinessProjectPlansController@searchStudents');
 Route::resource('periodoacademico','AcademicPeriodController');
 Route::resource('role','RoleController');
 Route::resource('estudiante','StudentController');

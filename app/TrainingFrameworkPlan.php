@@ -27,4 +27,9 @@ class TrainingFrameworkPlan extends Model
     {
         return $this->hasMany("App\LearningReport");
     }
+    public function Tracing()
+    {
+        return $this->belongsTo("App\Tracing");
+    }
+
 }

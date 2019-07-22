@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['notaPostulacion','tituloBachiller','person_id'];
+    protected $fillable = ['notaPostulacion','tituloBachiller'];
 
    public function people(){
        return $this->belongsTo("App\Person");
    }
+
+   public function Tracing()
+   {
+       return $this->hasMany("App\Tracing");
+   }
+
 }
 
