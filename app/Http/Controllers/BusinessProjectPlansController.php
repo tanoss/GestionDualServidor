@@ -94,8 +94,27 @@ class BusinessProjectPlansController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataBodyClient = $request->json()->all();
+        $dataBusinessProjectPlan = $dataBodyClient['business_project_plans'];
+        $response = BusinessProjectPlan::findorfail($id);
+        $response -> update([
+
+            'titulo'=>$dataBusinessProjectPlan['titulo'],
+            'analisis'=>$dataBusinessProjectPlan['analisis'],
+            'objetivo'=>$dataBusinessProjectPlan['objetivo'],
+            'descripcion'=>$dataBusinessProjectPlan['descripcion'],
+            'indicador'=>$dataBusinessProjectPlan['indicador'],
+            'medicion'=>$dataBusinessProjectPlan['medicion'],
+            'meta'=>$dataBusinessProjectPlan['meta'],
+            'fuenteDatos'=>$dataBusinessProjectPlan['fuenteDatos'],
+            'presupuesto'=>$dataBusinessProjectPlan['presupuesto'],
+            'beneficiosEsperados'=>$dataBusinessProjectPlan['beneficiosEsperados'],
+            'prioridad'=>$dataBusinessProjectPlan['prioridad'],
+
+      ]);
+       //return $response;
     }
+
 
     /**
      * Remove the specified resource from storage.

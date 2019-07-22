@@ -87,7 +87,19 @@ class LearningReportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataBodyClient = $request->json()->all();
+        $dataLearninReports = $dataBodyClient['learning_reports'];
+        $response = LearningReport::findorfail($id);
+        $response -> update([
+
+            'semana'=>$dataLearninReports['semana'],
+            'calificacion'=>$dataLearninReports['calificacion'],
+            'fechaEntrega'=>$dataLearninReports['fechaEntrega'],
+            'reflexion'=>$dataLearninReports['reflexion'],
+            'observaciones'=>$dataLearninReports['observaciones'],
+            'prioridad'=>$dataLearninReports['prioridad'],
+
+      ]);
     }
 
     /**
