@@ -61,9 +61,11 @@ class RotationPlansController extends Controller
      */
     public function show($id)
     {
-        return RotationPlan::where('id',$id)->get();
-        
-
+        //return RotationPlan::where('id',$id)->get();
+        $response = RotationPlan::where('id',$id)->with('TrainingFrameworkPlan')->first();
+        return response()->json([$response],200);
+        //return response()->json(['BusinessProjectPlan'=>$response],200);
+        // with('TrainingFrameworkPlan')->get()
     }
 
     /**
@@ -87,15 +89,15 @@ class RotationPlansController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $rotationPlan= rotationPlan::findOrFail($id);
-      
-        // $rotationPlan->update([
-        // "idPlanMarcoFormacion"=>$request->idPlanMarcoFormacion,
-        // "conocimientosTeoricos"=>$request->conocimientosTeoricos,
-        // "conocimientosProcedimentales"=>$request->conocimientosProcedimentales,
-        // "conocimientosActitudinales"=>$request->conocimientosActitudinales,
-        // "prioridad"=>$request->prioridad]);
-
+        $dataBodyClient = $request->json()->all();
+        $dataRotationPlan = $dataBodyClient['rotation_plans'];
+        $response = RotationPlan::findorfail($id);
+        $response -> update([
+            'conocimientosTeoricos'=>$dataRotationPlan['conocimientosTeoricos'],
+            'conocimientosProcedimentales'=>$dataRotationPlan['conocimientosProcedimentales'],
+            'conocimientosActitudinales'=>$dataRotationPlan['conocimientosActitudinales'],
+            'prioridad'=>$dataRotationPlan['prioridad']
+        ]);
     }
 
     /**

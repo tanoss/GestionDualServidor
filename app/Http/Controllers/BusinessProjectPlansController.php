@@ -68,8 +68,10 @@ class BusinessProjectPlansController extends Controller
      */
     public function show($id)
     {
-        $response = BusinessProjectPlan::where('id',$id)->first();
-        return response()->json(['BusinessProjectPlan'=>$response],200);
+        // $response = BusinessProjectPlan::where('id',$id)->first();
+        // return response()->json(['BusinessProjectPlan'=>$response],200);
+        $response = BusinessProjectPlan::where('id',$id)->with('TrainingFrameworkPlan')->first();
+        return response()->json([$response],200);
 
     }
 

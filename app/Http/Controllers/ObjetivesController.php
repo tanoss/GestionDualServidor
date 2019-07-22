@@ -65,7 +65,8 @@ class ObjetivesController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = Objective::where('id',$id)->with('TrainingFrameworkPlan')->first();
+        return response()->json([$response],200);
     }
 
     /**
@@ -88,7 +89,20 @@ class ObjetivesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataBodyClient = $request->json()->all();
+        $objective = $dataBodyClient['objectives'];
+        $response = Objective::findorfail($id);
+        $response -> update([
+            'descripcion'=>$objective['descripcion'],
+            'nivelLogroEsperado'=>$objective['nivelLogroEsperado'],
+            'nivelLogroAlcanzado'=>$objective['nivelLogroAlcanzado'],
+            'tareas'=>$objective['tareas'],
+            'puestoAprendizaje'=>$objective['puestoAprendizaje'],
+            'semanasTrabajo'=>$objective['semanasTrabajo'],
+            'semana'=>$objective['semana'],
+            'responsable'=>$objective['responsable'],
+            'prioridad'=>$objective['prioridad'],
+        ]);
     }
 
     /**

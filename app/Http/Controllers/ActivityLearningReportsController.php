@@ -66,7 +66,8 @@ class ActivityLearningReportsController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = ActivityLearningReport::where('id',$id)->with('LearningReport')->first();
+        return response()->json([$response],200);
     }
 
     /**
@@ -89,7 +90,19 @@ class ActivityLearningReportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataBodyClient = $request->json()->all();
+        $dataActivityLearingReports = $dataBodyClient['Activity_learning_reports'];
+        $response = ActivityLearningReport::findorfail($id);
+        $response -> update([
+            'descripcion'=>$dataActivityLearingReports['descripcion'],
+            'tipo'=>$dataActivityLearingReports['tipo'],
+            'fecha'=>$dataActivityLearingReports['fecha'],
+            'horaIngreso'=>$dataActivityLearingReports['horaIngreso'],
+            'horaSalida'=>$dataActivityLearingReports['horaSalida'],
+            'horaAlmuerzo'=>$dataActivityLearingReports['horaAlmuerzo'],
+            'horasTotales'=>$dataActivityLearingReports['horasTotales'],
+            'prioridad'=>$dataActivityLearingReports['prioridad'],
+        ]);
     }
 
     /**

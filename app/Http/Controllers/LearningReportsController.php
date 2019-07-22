@@ -37,7 +37,7 @@ class LearningReportsController extends Controller
     public function store(Request $request)
     {
         $dataBodyClient = $request->json()->all();
-        $dataLearninReports = $dataBodyClient['learning_reports'];
+        $dataLearninReports = $dataBodyClient['learningreports'];
         $dataFrameworkTrainingPlan = $dataBodyClient['training_framework_plans'];
         $frameworkplantraining =  TrainingFrameworkPlan::findorfail($dataFrameworkTrainingPlan['id']);
         
@@ -64,7 +64,8 @@ class LearningReportsController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = LearningReport::where('id',$id)->with('TrainingFrameworkPlan')->first();
+        return response()->json([$response],200);
     }
 
     /**
