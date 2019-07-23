@@ -15,7 +15,7 @@ class Tracing extends Model
     }
 
 
-    public function TrainingFrameworkPlans()
+    public function TrainingFrameworkPlan()
     {
         return $this->hasMany("App\TrainingFrameworkPlan");
     }

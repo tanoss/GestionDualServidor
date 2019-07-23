@@ -108,7 +108,7 @@ class RotationPlansController extends Controller
      */
     public function destroy($id)
     {
-        // $rotationPlan = RotationPlan::findOrFail($id);
-        // $rotationPlan->delete();
+        $rotationPlan = RotationPlan::findOrFail($id);
+         $rotationPlan->delete();
     }
 }
