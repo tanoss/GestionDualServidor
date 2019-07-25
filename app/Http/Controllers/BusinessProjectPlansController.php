@@ -26,7 +26,7 @@ class BusinessProjectPlansController extends Controller
         
         $bbplan =  Tracing::select('follow.*','people.*')
         ->with('Student')
-        ->with('TrainingFrameworkPlans')
+        ->with('TrainingFrameworkPlan')
         ->join('students','students.id','follow.student_id')
         ->join('people','people.id','students.person_id')
         ->where('follow.idPeriodoLectivo',1)
