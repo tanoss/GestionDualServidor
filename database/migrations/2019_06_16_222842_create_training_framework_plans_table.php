@@ -14,8 +14,8 @@ class CreateTrainingFrameworkPlansTable extends Migration
         Schema::create('training_framework_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('prioridad');
-            //$table->integer('tracing_id');
-            //$table->foreign('tracing_id')->references('id')->on('follow');
+            $table->integer('tracing_id');
+            $table->foreign('tracing_id')->references('id')->on('follow');
             $table->timestamps();
         });
     }
